@@ -1,11 +1,13 @@
-import Navbar from '@/navbar'
 import React, { ReactElement } from 'react'
+import Navbar from '../navbar'
 
 const Layout = ({ children }: { children: ReactElement }) => {
   return (
-    <div className="w-screen h-screen flex flex-col items-center ">
+    <div className='bg-black text-white'>
       <Navbar />
-      {children}
+      <div>
+        {children}
+      </div>
     </div>
   )
 }

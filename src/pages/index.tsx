@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import Calculator from '@/calculator'
+import Calculator from '@/components/calculator'
 
 export default function Home() {
   return (
-    <div className='pt-12'>
+    <main className="flex justify-center items-center w-full h-screen bg-black">
       <Calculator />
-    </div>
+    </main>
   )
 }

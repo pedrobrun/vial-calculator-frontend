@@ -2,9 +2,9 @@ import clsx from "clsx";
 import { ReactElement } from "react";
 
 const styles = {
-  number: "bg-[#313131] text-white active:bg-numbers-[#6d6d6d] justify-center",
-  operator: "bg-[#f69906] text-white font-bold justify-center active:bg-[#ffdf4c]",
-  clear: "bg-[#9f9f9f] justify-center active:bg-[#e5e5e5]",
+  dark: "text-white justify-center bg-[#313131] active:bg-numbers-[#6d6d6d]",
+  highlighted: "text-white justify-center font-bold bg-[#f69906] active:bg-[#ffdf4c]",
+  light: "bg-[#9f9f9f] active:bg-[#e5e5e5] justify-center",
 };
 
 export function Button({
@@ -12,7 +12,7 @@ export function Button({
   children,
   className
 }: {
-  type: 'number' | 'operator' | 'clear',
+  type: 'dark' | 'highlighted' | 'light',
   children: ReactElement | string | number,
   className?: string
 }) {

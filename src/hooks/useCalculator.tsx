@@ -82,12 +82,12 @@ function reducer(state: State, { type, payload }: Action) {
           previousValue: new Big(state.previousValue).sqrt().toString(),
         };
       }
-      if (state.currentValue) {
+      if (state.currentValue && state.previousValue && state.operation) {
         return {
           ...state,
           overwrite: true,
           previousValue: evaluate(state),
-          currentValue: evaluate(state),
+          currentValue: null,
           operation: payload?.operation,
         };
       }
@@ -110,17 +110,15 @@ function reducer(state: State, { type, payload }: Action) {
         previousValue: (parseFloat(state.previousValue) * -1).toString(),
       };
     case "EVALUATE":
-      if (!state.previousValue || !state.currentValue || !state.operation) {
-        return state;
+      if (state.previousValue && (state.currentValue || state.currentValue === "0") && state.operation) {
+        return {
+          ...state,
+          overwrite: true,
+          previousValue: evaluate(state),
+          currentValue: null,
+        };
       }
-      return {
-        ...state,
-        overwrite: true,
-        previousValue: evaluate(state),
-        currentValue: state.overwrite
-          ? state.currentValue
-          : state.previousValue,
-      };
+      return state;
     default:
       return state;
   }

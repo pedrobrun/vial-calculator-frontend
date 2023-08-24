@@ -71,5 +71,58 @@ describe('useCalculator hook', () => {
     expect(result.current.state.previousValue).toBe('3')
   })
 
-  // You can add tests for memory operations, percentage, inversion etc.
+  test('should handle decimal points correctly', () => {
+    const { result } = renderHook(() => useCalculator())
+    act(() => {
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '1' } })
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '.' } })
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '5' } })
+      result.current.dispatch({
+        type: 'SET_OPERATION',
+        payload: { operation: '+' },
+      })
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '2' } })
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '.' } })
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '5' } })
+      result.current.dispatch({ type: 'EVALUATE' })
+    })
+    expect(result.current.state.previousValue).toBe('4')
+  })
+
+  test('should clear the input', () => {
+    const { result } = renderHook(() => useCalculator())
+    act(() => {
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '5' } })
+      result.current.dispatch({ type: 'CLEAR' })
+    })
+    expect(result.current.state.previousValue).toBe('0')
+  })
+
+  test('should handle memory add and clear', () => {
+    const { result } = renderHook(() => useCalculator())
+    act(() => {
+      result.current.dispatch({ type: 'ADD_DIGIT', payload: { digit: '7' } })
+      result.current.dispatch({
+        type: 'SET_OPERATION',
+        payload: { operation: 'M+' },
+      })
+      result.current.dispatch({ type: 'CLEAR' })
+      result.current.dispatch({
+        type: 'SET_OPERATION',
+        payload: { operation: 'MR' },
+      })
+    })
+    expect(result.current.state.previousValue).toBe('7')
+    act(() => {
+      result.current.dispatch({
+        type: 'SET_OPERATION',
+        payload: { operation: 'MC' },
+      })
+      result.current.dispatch({
+        type: 'SET_OPERATION',
+        payload: { operation: 'MR' },
+      })
+    })
+    expect(result.current.state.previousValue).toBe('0')
+  })
 })

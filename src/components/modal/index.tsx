@@ -43,7 +43,7 @@ const Modal = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full h-full max-w-[345px] bg-white transform overflow-hidden rounded-[16px] p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full h-full max-w-[345px] bg-white transform overflow-hidden rounded-md p-6 text-left align-middle shadow-xl transition-all">
                   <div className="text-[24px] leading-[36px] font-bold">
                     {title}
                   </div>

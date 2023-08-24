@@ -9,6 +9,7 @@
 
 # testing
 /coverage
+__tests__/node_modules
 
 # next.js
 /.next/

@@ -8,6 +8,18 @@ export type Action = {
     | 'CLEAR'
   payload?: {
     digit?: string
-    operation?: '+' | '-' | '×' | '÷'
+    operation?: Operation
   }
 }
+
+export type Operation =
+  | '+'
+  | '-'
+  | '×'
+  | '÷'
+  | 'M+'
+  | 'M-'
+  | 'MR'
+  | 'MC'
+  | '^'
+  | '√'

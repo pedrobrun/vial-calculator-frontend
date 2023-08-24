@@ -1,6 +1,9 @@
+import { Operation } from './Action'
+
 export type State = {
   previousValue: string
   currentValue?: string | null
-  operation?: '+' | '-' | '×' | '÷'
+  operation?: Operation
   overwrite?: boolean
+  memory?: string
 }

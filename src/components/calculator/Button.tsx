@@ -8,6 +8,7 @@ const styles = {
 };
 
 export function Button({
+  onClick,
   type,
   children,
   className
@@ -15,11 +16,13 @@ export function Button({
   type: 'dark' | 'highlighted' | 'light',
   children: ReactElement | string | number,
   className?: string
+  onClick: () => void
 }) {
 
   return (
     <button
       type="button"
+      onClick={onClick}
       className={clsx(
         "flex items-center text-3xl rounded-full w-16 h-16 hover:opacity-70 transition-opacity duration-300",
         styles[type],

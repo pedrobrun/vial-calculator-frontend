@@ -17,6 +17,7 @@ interface AuthContextProps {
   username: string | null;
   resetSignUpState: () => void;
   loading: boolean;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextProps>({
@@ -26,8 +27,9 @@ export const AuthContext = createContext<AuthContextProps>({
   signUpState: { data: null, loading: false, error: null },
   signInState: { data: null, loading: false, error: null },
   username: null,
-  resetSignUpState: () => {},
+  resetSignUpState: () => { },
   loading: false,
+  logout: () => { }
 });
 
 export const useAuth = (): AuthContextProps => useContext(AuthContext);
@@ -60,6 +62,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       error: null,
     });
   };
+
+  const logout = () => {
+    setUsername(null)
+    setJwt(null)
+    localStorage.removeItem('username')
+    localStorage.removeItem('jwt')
+  }
 
   const signIn = async (username: string, password: string) => {
     setSignInState({ data: null, loading: true, error: null });
@@ -124,6 +133,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         signUpState,
         resetSignUpState,
         loading,
+        logout
       }}
     >
       {children}

@@ -27,9 +27,9 @@ export const AuthContext = createContext<AuthContextProps>({
   signUpState: { data: null, loading: false, error: null },
   signInState: { data: null, loading: false, error: null },
   username: null,
-  resetSignUpState: () => { },
+  resetSignUpState: () => {},
   loading: false,
-  logout: () => { }
+  logout: () => {},
 });
 
 export const useAuth = (): AuthContextProps => useContext(AuthContext);
@@ -64,11 +64,11 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   const logout = () => {
-    setUsername(null)
-    setJwt(null)
-    localStorage.removeItem('username')
-    localStorage.removeItem('jwt')
-  }
+    setUsername(null);
+    setJwt(null);
+    localStorage.removeItem("username");
+    localStorage.removeItem("jwt");
+  };
 
   const signIn = async (username: string, password: string) => {
     setSignInState({ data: null, loading: true, error: null });
@@ -133,7 +133,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         signUpState,
         resetSignUpState,
         loading,
-        logout
+        logout,
       }}
     >
       {children}

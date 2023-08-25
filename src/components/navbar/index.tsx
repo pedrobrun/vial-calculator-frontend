@@ -24,8 +24,19 @@ const Navbar = () => {
             Hi, <span className="text-lg font-bold uppercase">{username}</span>!
           </p>
           <button onClick={logout} className="relative group">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
+              />
             </svg>
             <div className="absolute w-16 left-1/2 -translate-x-1/2 top-full mt-1 z-10 invisible group-hover:visible">
               <div className="bg-gray-800 text-white p-1 rounded text-xs">

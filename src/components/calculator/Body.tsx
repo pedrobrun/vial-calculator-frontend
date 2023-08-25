@@ -71,14 +71,15 @@ export function Body({
         +
       </Button>
 
+      <Button
+        onClick={() => addDigit("0")}
+        className="col-span-2 w-32 justify-start pl-6 pr-28"
+        type="dark"
+      >
+        0
+      </Button>
       <Button onClick={() => addDigit(".")} type="dark">
         .
-      </Button>
-      <Button onClick={() => setOperation("M+")} type="highlighted">
-        M+
-      </Button>
-      <Button onClick={() => setOperation("M-")} type="highlighted">
-        M-
       </Button>
       <Button onClick={() => dispatch({ type: "EVALUATE" })} type="highlighted">
         =
@@ -98,11 +99,18 @@ export function Body({
       </Button>
 
       <Button
-        onClick={() => addDigit("0")}
-        className="col-span-2 w-32 justify-start pl-6 pr-28"
-        type="dark"
+        className="col-span-2 w-full"
+        onClick={() => setOperation("M+")}
+        type="highlighted"
       >
-        0
+        M+
+      </Button>
+      <Button
+        className="col-span-2 w-full place-self-end"
+        onClick={() => setOperation("M-")}
+        type="highlighted"
+      >
+        M-
       </Button>
     </div>
   );

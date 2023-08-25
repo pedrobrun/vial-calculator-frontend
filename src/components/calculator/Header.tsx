@@ -32,4 +32,4 @@ export function Header({ value }: { value: string }) {
   );
 }
 
-export default Header
+export default Header;

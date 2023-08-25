@@ -1,13 +1,13 @@
 import { useEffect, useReducer } from "react";
 
-import { Big } from 'big.js'
+import { Big } from "big.js";
 import { Action } from "@/components/calculator/Action";
 import { State } from "@/components/calculator/State";
 
 const initialValue: State = {
   previousValue: "0",
   overwrite: true,
-  memory: undefined
+  memory: undefined,
 };
 
 function reducer(state: State, { type, payload }: Action) {
@@ -15,7 +15,7 @@ function reducer(state: State, { type, payload }: Action) {
     case "CLEAR":
       return {
         ...initialValue,
-        memory: state.memory || '0'
+        memory: state.memory || "0",
       };
     case "ADD_DIGIT":
       if (payload?.digit === "0" && state.previousValue === "0") {
@@ -25,10 +25,10 @@ function reducer(state: State, { type, payload }: Action) {
         return state.previousValue?.includes(".")
           ? state
           : {
-            ...state,
-            previousValue: `${state.previousValue}${payload?.digit}`,
-            overwrite: false,
-          };
+              ...state,
+              previousValue: `${state.previousValue}${payload?.digit}`,
+              overwrite: false,
+            };
       }
       if (state.overwrite || state.previousValue === "0") {
         return {
@@ -110,7 +110,11 @@ function reducer(state: State, { type, payload }: Action) {
         previousValue: (parseFloat(state.previousValue) * -1).toString(),
       };
     case "EVALUATE":
-      if (state.previousValue && (state.currentValue || state.currentValue === "0") && state.operation) {
+      if (
+        state.previousValue &&
+        (state.currentValue || state.currentValue === "0") &&
+        state.operation
+      ) {
         return {
           ...state,
           overwrite: true,
@@ -146,7 +150,7 @@ function evaluate({
         ? new Big(previous).div(current).toString()
         : new Big(current).div(previous).toString();
     default:
-      break
+      break;
   }
 }
 

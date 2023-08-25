@@ -1,6 +1,6 @@
-import React, { Fragment, ReactElement } from 'react'
+import React, { Fragment, ReactElement } from "react";
 
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition } from "@headlessui/react";
 
 const Modal = ({
   close,
@@ -8,10 +8,10 @@ const Modal = ({
   title,
   children,
 }: {
-  close: () => void
-  isOpen: boolean
-  title: string
-  children: ReactElement
+  close: () => void;
+  isOpen: boolean;
+  title: string;
+  children: ReactElement;
 }) => {
   return (
     <>
@@ -55,7 +55,7 @@ const Modal = ({
         </Dialog>
       </Transition>
     </>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

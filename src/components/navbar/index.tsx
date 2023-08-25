@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import Modal from '../modal'
-import SignInForm from './SignInForm'
-import SignUpForm from './SignUpForm'
-import { useAuth } from '@/contexts/AuthContext'
+import React, { useState } from "react";
+import Modal from "../modal";
+import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
-  const [signUpModalOpen, setSignUpModalOpen] = useState(false)
-  const [signInModalOpen, setSignInModalOpen] = useState(false)
-  const { username, jwt, loading } = useAuth()
+  const [signUpModalOpen, setSignUpModalOpen] = useState(false);
+  const [signInModalOpen, setSignInModalOpen] = useState(false);
+  const { username, jwt, loading } = useAuth();
 
   return (
     <div className="w-full items-center justify-center flex flex-col pt-12">
@@ -19,7 +19,9 @@ const Navbar = () => {
           <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]" />
         </div>
       ) : username && jwt ? (
-        <div>Hi, <span className='text-lg font-bold uppercase'>{username}</span>!</div>
+        <div>
+          Hi, <span className="text-lg font-bold uppercase">{username}</span>!
+        </div>
       ) : (
         <div className="text-bold gap-10 flex items-center">
           <button
@@ -53,7 +55,7 @@ const Navbar = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

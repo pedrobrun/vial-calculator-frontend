@@ -20,15 +20,15 @@ export function Header({ value }: { value: string }) {
   }, [value, scale]);
 
   return (
-    <header className="w-72 h-12 flex justify-end items-end pb-4 pr-5 relative">
+    <div className="w-72 flex justify-end items-end pb-4 pr-5 relative">
       <strong
-        className="text-white text-7xl font-light absolute right-0 origin-right"
+        className="text-white text-7xl font-light relative -right-3 origin-right"
         ref={spanRef}
         style={{ transform: `scale(${scale},${scale})` }}
       >
         {value}
       </strong>
-    </header>
+    </div>
   );
 }
 

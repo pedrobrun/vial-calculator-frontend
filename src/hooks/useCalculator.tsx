@@ -8,6 +8,7 @@ const initialValue: State = {
   previousValue: "0",
   overwrite: true,
   memory: undefined,
+  history: [],
 };
 
 function reducer(state: State, { type, payload }: Action) {
@@ -16,6 +17,7 @@ function reducer(state: State, { type, payload }: Action) {
       return {
         ...initialValue,
         memory: state.memory || "0",
+        history: state.history,
       };
     case "ADD_DIGIT":
       if (payload?.digit === "0" && state.previousValue === "0") {
@@ -25,10 +27,10 @@ function reducer(state: State, { type, payload }: Action) {
         return state.previousValue?.includes(".")
           ? state
           : {
-              ...state,
-              previousValue: `${state.previousValue}${payload?.digit}`,
-              overwrite: false,
-            };
+            ...state,
+            previousValue: `${state.previousValue}${payload?.digit}`,
+            overwrite: false,
+          };
       }
       if (state.overwrite || state.previousValue === "0") {
         return {
@@ -115,11 +117,15 @@ function reducer(state: State, { type, payload }: Action) {
         (state.currentValue || state.currentValue === "0") &&
         state.operation
       ) {
+        const newResult = evaluate(state);
+        const newHistoryEntry = `${state.previousValue} ${state.operation} ${state.currentValue} = ${newResult}`;
+
         return {
           ...state,
           overwrite: true,
           previousValue: evaluate(state),
           currentValue: null,
+          history: [...state.history, newHistoryEntry],  // <--- Add this line
         };
       }
       return state;

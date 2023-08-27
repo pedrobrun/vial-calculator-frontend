@@ -10,7 +10,7 @@ const Navbar = () => {
   const { username, jwt, loading, logout } = useAuth();
 
   return (
-    <div className="w-full items-center justify-center flex flex-col pt-12">
+    <div className="w-full items-center justify-center relative top-0 z-40 bg-black flex flex-col pt-12">
       {loading ? (
         <div
           className="flex h-8 w-8 text-white animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"

@@ -7,4 +7,5 @@ export type State = {
   overwrite?: boolean
   memory?: string
   history: string[]
+  isOperationReady: boolean
 }

@@ -9,6 +9,7 @@ const initialValue: State = {
   overwrite: true,
   memory: undefined,
   history: [],
+  isOperationReady: false,
 };
 
 function reducer(state: State, { type, payload }: Action) {
@@ -25,9 +26,10 @@ function reducer(state: State, { type, payload }: Action) {
       }
       if (payload?.digit === ".") {
         return state.previousValue?.includes(".")
-          ? state
+          ? { ...state, isOperationReady: Boolean(state.operation), }
           : {
             ...state,
+            isOperationReady: Boolean(state.operation),
             previousValue: `${state.previousValue}${payload?.digit}`,
             overwrite: false,
           };
@@ -35,12 +37,14 @@ function reducer(state: State, { type, payload }: Action) {
       if (state.overwrite || state.previousValue === "0") {
         return {
           ...state,
+          isOperationReady: Boolean(state.operation),
           previousValue: payload?.digit || "",
           overwrite: false,
         };
       }
       return {
         ...state,
+        isOperationReady: Boolean(state.operation),
         previousValue: `${state.previousValue}${payload?.digit || ""}`,
       };
     case "SET_OPERATION":
@@ -112,6 +116,7 @@ function reducer(state: State, { type, payload }: Action) {
         previousValue: (parseFloat(state.previousValue) * -1).toString(),
       };
     case "EVALUATE":
+      state.isOperationReady = false
       if (
         state.previousValue &&
         (state.currentValue || state.currentValue === "0") &&
@@ -125,7 +130,7 @@ function reducer(state: State, { type, payload }: Action) {
           overwrite: true,
           previousValue: evaluate(state),
           currentValue: null,
-          history: [...state.history, newHistoryEntry],  // <--- Add this line
+          history: [...state.history, newHistoryEntry],
         };
       }
       return state;

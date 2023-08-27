@@ -11,6 +11,7 @@ const styles = {
 export function Button({
   onClick,
   type,
+  disabled,
   children,
   className,
 }: {
@@ -18,11 +19,13 @@ export function Button({
   children: ReactElement | string | number;
   className?: string;
   onClick: () => void;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       className={clsx(
         "flex items-center text-3xl rounded-full w-16 h-16 hover:opacity-70 transition-opacity duration-300",
         styles[type],

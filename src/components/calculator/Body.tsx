@@ -17,7 +17,7 @@ export function Body({
     dispatch({ type: "SET_OPERATION", payload: { operation } });
   };
 
-  const buttonDisabled = state.isOperationReady ? ' opacity-50 cursor-not-allowed' : '';
+  const buttonDisabled = state.isOperationReady ? ' opacity-40 cursor-not-allowed' : '';
 
   return (
     <div className="grid w-72 grid-cols-4 grid-rows-5 gap-3">
@@ -34,39 +34,39 @@ export function Body({
         ÷
       </Button>
 
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("7")} type="dark">
+      <Button onClick={() => addDigit("7")} type="dark">
         7
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("8")} type="dark">
+      <Button onClick={() => addDigit("8")} type="dark">
         8
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("9")} type="dark">
+      <Button onClick={() => addDigit("9")} type="dark">
         9
       </Button>
       <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("×")} type="highlighted">
         ×
       </Button>
 
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("4")} type="dark">
+      <Button onClick={() => addDigit("4")} type="dark">
         4
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("5")} type="dark">
+      <Button onClick={() => addDigit("5")} type="dark">
         5
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("6")} type="dark">
+      <Button onClick={() => addDigit("6")} type="dark">
         6
       </Button>
       <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("-")} type="highlighted">
         -
       </Button>
 
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("1")} type="dark">
+      <Button onClick={() => addDigit("1")} type="dark">
         1
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("2")} type="dark">
+      <Button onClick={() => addDigit("2")} type="dark">
         2
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit("3")} type="dark">
+      <Button onClick={() => addDigit("3")} type="dark">
         3
       </Button>
       <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("+")} type="highlighted">
@@ -75,12 +75,12 @@ export function Body({
 
       <Button
         onClick={() => addDigit("0")}
-        className={`col-span-2 w-32 justify-start pl-6 pr-28 ${buttonDisabled}`}
+        className={`col-span-2 w-32 justify-start pl-6 pr-28`}
         type="dark"
       >
         0
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => addDigit(".")} type="dark">
+      <Button onClick={() => addDigit(".")} type="dark">
         .
       </Button>
       <Button onClick={() => dispatch({ type: "EVALUATE" })} type="highlighted">

@@ -77,15 +77,23 @@ function reducer(state: State, { type, payload }: Action) {
         };
       }
       if (payload?.operation === "^") {
+        const newResult = new Big(state.previousValue).pow(2).toString();
+        const newHistoryEntry = `${state.previousValue}² = ${newResult}`;
+
         return {
           ...state,
-          previousValue: new Big(state.previousValue).pow(2).toString(),
+          previousValue: newResult,
+          history: [...state.history, newHistoryEntry],
         };
       }
       if (payload?.operation === "√") {
+        const newResult = new Big(state.previousValue).sqrt().toString();
+        const newHistoryEntry = `√${state.previousValue} = ${newResult}`;
+
         return {
           ...state,
-          previousValue: new Big(state.previousValue).sqrt().toString(),
+          previousValue: newResult,
+          history: [...state.history, newHistoryEntry],
         };
       }
       if (state.currentValue && state.previousValue && state.operation) {

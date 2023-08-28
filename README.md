@@ -1,25 +1,8 @@
-## Getting Started
+## Calculator Frontend
 
-```bash
-$ npm install
-$ npm run dev
-# or
-$ yarn install
-$ yarn dev
-# or
-$ pnpm install
-$ pnpm dev
-```
+### Introduction
 
-### Overview
-
-Inspired by the iPhone's calculator design, this project aims to develop a calculator application using modern NextJS/React-based frontend technology and a NestJS backend. The application performs basic arithmetic, percentage calculations, memory operations, and tracks user history. It also offers user authentication features.
-
-## Calculator Frontend Design Document
-
-### Overview
-
-This project is a calculator application inspired by the iPhone's calculator design. Built using React.js and TypeScript, it provides a user-friendly UI and efficient functionality.
+Inspired by the iPhone's calculator design, this project aims to develop a calculator application using modern NextJS/React-based frontend technology and a NestJS backend. The application performs basic arithmetic, percentage calculations, memory operations, and tracks user history. It also offers user authentication features. It provides a user-friendly UI and efficient functionality.
 
 ### Tech Stack
 
@@ -63,3 +46,16 @@ The folder structure is organized to isolate different aspects and responsibilit
 ### Testing
 
 - Tests are available and can be executed using `yarn test`.
+
+## Getting Started
+
+```bash
+$ npm install
+$ npm run dev
+# or
+$ yarn install
+$ yarn dev
+# or
+$ pnpm install
+$ pnpm dev
+```

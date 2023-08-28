@@ -11,8 +11,6 @@ $ pnpm install
 $ pnpm dev
 ```
 
-## Part 1: Design Doc for Calculator Implementation
-
 ### Overview
 
 Inspired by the iPhone's calculator design, this project aims to develop a calculator application using modern NextJS/React-based frontend technology and a NestJS backend. The application performs basic arithmetic, percentage calculations, memory operations, and tracks user history. It also offers user authentication features.

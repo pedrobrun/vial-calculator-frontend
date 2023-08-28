@@ -205,39 +205,39 @@ export function useCalculator() {
       saveCalculation(latestHistoryEntry, jwt);
     }
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const keys = {
-        c: () => dispatch({ type: "CLEAR" }),
-        "%": () => dispatch({ type: "PERCENTAGE" }),
-        0: () => addDigit(e.key.toLowerCase()),
-        1: () => addDigit(e.key.toLowerCase()),
-        2: () => addDigit(e.key.toLowerCase()),
-        3: () => addDigit(e.key.toLowerCase()),
-        4: () => addDigit(e.key.toLowerCase()),
-        5: () => addDigit(e.key.toLowerCase()),
-        6: () => addDigit(e.key.toLowerCase()),
-        7: () => addDigit(e.key.toLowerCase()),
-        8: () => addDigit(e.key.toLowerCase()),
-        9: () => addDigit(e.key.toLowerCase()),
-        ".": () => addDigit(e.key.toLowerCase()),
-        ",": () => addDigit("."),
-        "/": () => setOperation("÷"),
-        "*": () => setOperation("×"),
-        "-": () => setOperation("-"),
-        "+": () => setOperation("+"),
-        "=": () => dispatch({ type: "EVALUATE" }),
-        enter: () => dispatch({ type: "EVALUATE" }),
-      };
-      if (keys[e.key.toLowerCase() as keyof typeof keys]) {
-        keys[e.key.toLowerCase() as keyof typeof keys]();
-      }
-    };
+    // const handleKeyDown = (e: KeyboardEvent) => {
+    //   const keys = {
+    //     c: () => dispatch({ type: "CLEAR" }),
+    //     "%": () => dispatch({ type: "PERCENTAGE" }),
+    //     0: () => addDigit(e.key.toLowerCase()),
+    //     1: () => addDigit(e.key.toLowerCase()),
+    //     2: () => addDigit(e.key.toLowerCase()),
+    //     3: () => addDigit(e.key.toLowerCase()),
+    //     4: () => addDigit(e.key.toLowerCase()),
+    //     5: () => addDigit(e.key.toLowerCase()),
+    //     6: () => addDigit(e.key.toLowerCase()),
+    //     7: () => addDigit(e.key.toLowerCase()),
+    //     8: () => addDigit(e.key.toLowerCase()),
+    //     9: () => addDigit(e.key.toLowerCase()),
+    //     ".": () => addDigit(e.key.toLowerCase()),
+    //     ",": () => addDigit("."),
+    //     "/": () => setOperation("÷"),
+    //     "*": () => setOperation("×"),
+    //     "-": () => setOperation("-"),
+    //     "+": () => setOperation("+"),
+    //     "=": () => dispatch({ type: "EVALUATE" }),
+    //     enter: () => dispatch({ type: "EVALUATE" }),
+    //   };
+    //   if (keys[e.key.toLowerCase() as keyof typeof keys]) {
+    //     keys[e.key.toLowerCase() as keyof typeof keys]();
+    //   }
+    // };
 
-    document.addEventListener("keyup", handleKeyDown);
+    // document.addEventListener("keyup", handleKeyDown);
 
-    return () => {
-      document.removeEventListener("keyup", handleKeyDown);
-    };
+    // return () => {
+    //   document.removeEventListener("keyup", handleKeyDown);
+    // };
   }, [jwt, state.history]);
 
   return { state, dispatch };

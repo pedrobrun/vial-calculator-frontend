@@ -1,38 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
+$ npm install
+$ npm run dev
 # or
-yarn dev
+$ yarn install
+$ yarn dev
 # or
-pnpm dev
+$ pnpm install
+$ pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Part 1: Design Doc for Calculator Implementation
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Overview
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Inspired by the iPhone's calculator design, this project aims to develop a calculator application using modern NextJS/React-based frontend technology and a NestJS backend. The application performs basic arithmetic, percentage calculations, memory operations, and tracks user history. It also offers user authentication features.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Calculator Frontend Design Document
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Overview
 
-## Learn More
+This project is a calculator application inspired by the iPhone's calculator design. Built using React.js and TypeScript, it provides a user-friendly UI and efficient functionality.
 
-To learn more about Next.js, take a look at the following resources:
+### Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework**: React.js
+- **Language**: TypeScript
+- **State Management**: React Hooks (`useReducer`, `useState`, `useEffect`)
+- **Other Libraries**: `big.js`, `react-query`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Folder Structure Rationale
 
-## Deploy on Vercel
+The folder structure is organized to isolate different aspects and responsibilities of the application:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `components`: Holds reusable UI elements, further broken down by feature area (e.g., calculator, navbar).
+- `contexts`: Manages global state and provides shared functionality.
+- `hooks`: Contains custom React Hooks for managing local component states.
+- `pages`: Holds the application's main views.
+- `services`: Contains API calls.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Application Structure
+
+1. **Components**
+
+   - `Calculator`: Root Calculator component
+     - `Header`: Displays previous operations or results
+     - `Body`: Button interface for digits and operations
+     - `History`: Displays past calculations
+   - `Navbar`: Navigation bar
+   - `Layout`: Main layout wrapper
+
+<br/>
+
+2. **Contexts**
+
+- `AuthContext`: Manages authentication state
+
+<br/>
+
+3. **Hooks**
+   - `useCalculator`: Manages calculator state and logic
+
+### Testing
+
+- Tests are available and can be executed using `yarn test`.

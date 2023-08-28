@@ -1,3 +1,4 @@
+import { useAuth } from "@/contexts/AuthContext";
 import { Action, Operation } from "./Action";
 import { Button } from "./Button";
 import { State } from "./State";
@@ -9,28 +10,47 @@ export function Body({
   state: State;
   dispatch: React.Dispatch<Action>;
 }) {
+  const { jwt } = useAuth();
+
   const addDigit = (number: string) => {
-    dispatch({ type: "ADD_DIGIT", payload: { digit: number } });
+    dispatch({ type: "ADD_DIGIT", payload: { digit: number, jwt } });
   };
 
   const setOperation = (operation: Operation) => {
-    dispatch({ type: "SET_OPERATION", payload: { operation } });
+    dispatch({ type: "SET_OPERATION", payload: { operation, jwt } });
   };
 
-  const buttonDisabled = state.isOperationReady ? ' opacity-40 cursor-not-allowed' : '';
+  const buttonDisabled = state.isOperationReady
+    ? " opacity-40 cursor-not-allowed"
+    : "";
 
   return (
     <div className="grid w-72 grid-cols-4 grid-rows-5 gap-3">
       <Button onClick={() => dispatch({ type: "CLEAR" })} type="light">
         {!state?.currentValue && state.previousValue === "0" ? "AC" : "C"}
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => dispatch({ type: "INVERT" })} type="light">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => dispatch({ type: "INVERT" })}
+        type="light"
+      >
         +/-
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => dispatch({ type: "PERCENTAGE" })} type="light">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => dispatch({ type: "PERCENTAGE" })}
+        type="light"
+      >
         %
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("÷")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("÷")}
+        type="highlighted"
+      >
         ÷
       </Button>
 
@@ -43,7 +63,12 @@ export function Body({
       <Button onClick={() => addDigit("9")} type="dark">
         9
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("×")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("×")}
+        type="highlighted"
+      >
         ×
       </Button>
 
@@ -56,7 +81,12 @@ export function Body({
       <Button onClick={() => addDigit("6")} type="dark">
         6
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("-")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("-")}
+        type="highlighted"
+      >
         -
       </Button>
 
@@ -69,7 +99,12 @@ export function Body({
       <Button onClick={() => addDigit("3")} type="dark">
         3
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("+")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("+")}
+        type="highlighted"
+      >
         +
       </Button>
 
@@ -87,16 +122,36 @@ export function Body({
         =
       </Button>
 
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("MR")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("MR")}
+        type="highlighted"
+      >
         MR
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("MC")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("MC")}
+        type="highlighted"
+      >
         MC
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("^")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("^")}
+        type="highlighted"
+      >
         ^
       </Button>
-      <Button disabled={Boolean(buttonDisabled)} className={buttonDisabled} onClick={() => setOperation("√")} type="highlighted">
+      <Button
+        disabled={Boolean(buttonDisabled)}
+        className={buttonDisabled}
+        onClick={() => setOperation("√")}
+        type="highlighted"
+      >
         √
       </Button>
 

@@ -3,6 +3,8 @@ import { useEffect, useReducer } from "react";
 import { Big } from "big.js";
 import { Action } from "@/components/calculator/Action";
 import { State } from "@/components/calculator/State";
+import { useAuth } from "@/contexts/AuthContext";
+import { saveCalculations } from "@/services/calculations/saveCalculation";
 
 const initialValue: State = {
   previousValue: "0",
@@ -26,13 +28,13 @@ function reducer(state: State, { type, payload }: Action) {
       }
       if (payload?.digit === ".") {
         return state.previousValue?.includes(".")
-          ? { ...state, isOperationReady: Boolean(state.operation), }
+          ? { ...state, isOperationReady: Boolean(state.operation) }
           : {
-            ...state,
-            isOperationReady: Boolean(state.operation),
-            previousValue: `${state.previousValue}${payload?.digit}`,
-            overwrite: false,
-          };
+              ...state,
+              isOperationReady: Boolean(state.operation),
+              previousValue: `${state.previousValue}${payload?.digit}`,
+              overwrite: false,
+            };
       }
       if (state.overwrite || state.previousValue === "0") {
         return {
@@ -79,6 +81,7 @@ function reducer(state: State, { type, payload }: Action) {
       if (payload?.operation === "^") {
         const newResult = new Big(state.previousValue).pow(2).toString();
         const newHistoryEntry = `${state.previousValue}² = ${newResult}`;
+        // save calc
 
         return {
           ...state,
@@ -89,6 +92,7 @@ function reducer(state: State, { type, payload }: Action) {
       if (payload?.operation === "√") {
         const newResult = new Big(state.previousValue).sqrt().toString();
         const newHistoryEntry = `√${state.previousValue} = ${newResult}`;
+        // save calc
 
         return {
           ...state,
@@ -124,7 +128,7 @@ function reducer(state: State, { type, payload }: Action) {
         previousValue: (parseFloat(state.previousValue) * -1).toString(),
       };
     case "EVALUATE":
-      state.isOperationReady = false
+      state.isOperationReady = false;
       if (
         state.previousValue &&
         (state.currentValue || state.currentValue === "0") &&
@@ -132,6 +136,7 @@ function reducer(state: State, { type, payload }: Action) {
       ) {
         const newResult = evaluate(state);
         const newHistoryEntry = `${state.previousValue} ${state.operation} ${state.currentValue} = ${newResult}`;
+        // save calc
 
         return {
           ...state,
@@ -175,16 +180,31 @@ function evaluate({
 
 export function useCalculator() {
   const [state, dispatch] = useReducer(reducer, initialValue);
-
-  const addDigit = (number: string) => {
-    dispatch({ type: "ADD_DIGIT", payload: { digit: number } });
-  };
-
-  const setOperation = (operation: "+" | "-" | "×" | "÷") => {
-    dispatch({ type: "SET_OPERATION", payload: { operation } });
-  };
+  const { jwt } = useAuth();
 
   useEffect(() => {
+    const addDigit = (number: string) => {
+      dispatch({ type: "ADD_DIGIT", payload: { digit: number, jwt } });
+    };
+
+    const setOperation = (operation: "+" | "-" | "×" | "÷") => {
+      dispatch({ type: "SET_OPERATION", payload: { operation, jwt } });
+    };
+
+    const saveCalculation = async (newHistoryEntry: string, jwt: string) => {
+      try {
+        await saveCalculations(newHistoryEntry, jwt);
+      } catch (error) {
+        console.error("Failed to save calculation:", error);
+      }
+    };
+
+    // Trigger the async function if there is a new history entry
+    if (state.history.length > 0 && jwt) {
+      const latestHistoryEntry = state.history[state.history.length - 1];
+      saveCalculation(latestHistoryEntry, jwt);
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       const keys = {
         c: () => dispatch({ type: "CLEAR" }),
@@ -218,7 +238,7 @@ export function useCalculator() {
     return () => {
       document.removeEventListener("keyup", handleKeyDown);
     };
-  }, []);
+  }, [jwt, state.history]);
 
   return { state, dispatch };
 }

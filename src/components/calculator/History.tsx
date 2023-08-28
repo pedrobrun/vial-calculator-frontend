@@ -28,7 +28,7 @@ const History = ({ operations }: { operations: string[] }) => {
   });
 
   return (
-    <div className="flex gap-4 my-12 items-end">
+    <div className="flex flex-col lg:flex-row gap-4 my-12 items-end">
       <div className="flex flex-col items-center w-full gap-2">
         <h2>Recent History</h2>
         <div className="border rounded-sm p-2 w-full overflow-auto">

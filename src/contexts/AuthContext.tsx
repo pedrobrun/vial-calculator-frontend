@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { login } from "@/services/auth/login";
-import { registerUser } from "@/services/user/register";
+import { login } from "../services/auth/login";
+import { registerUser } from "../services/user/register";
 
 export interface AuthState<T> {
   data: T | null;
@@ -27,9 +27,9 @@ export const AuthContext = createContext<AuthContextProps>({
   signUpState: { data: null, loading: false, error: null },
   signInState: { data: null, loading: false, error: null },
   username: null,
-  resetSignUpState: () => {},
+  resetSignUpState: () => { },
   loading: false,
-  logout: () => {},
+  logout: () => { },
 });
 
 export const useAuth = (): AuthContextProps => useContext(AuthContext);

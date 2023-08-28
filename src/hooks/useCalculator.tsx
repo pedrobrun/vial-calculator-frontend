@@ -3,8 +3,8 @@ import { useEffect, useReducer } from "react";
 import { Big } from "big.js";
 import { Action } from "@/components/calculator/Action";
 import { State } from "@/components/calculator/State";
-import { useAuth } from "@/contexts/AuthContext";
-import { saveCalculations } from "@/services/calculations/saveCalculation";
+import { saveCalculations } from "../services/calculations/saveCalculation";
+import { useAuth } from "../contexts/AuthContext";
 
 const initialValue: State = {
   previousValue: "0",
@@ -30,11 +30,11 @@ function reducer(state: State, { type, payload }: Action) {
         return state.previousValue?.includes(".")
           ? { ...state, isOperationReady: Boolean(state.operation) }
           : {
-              ...state,
-              isOperationReady: Boolean(state.operation),
-              previousValue: `${state.previousValue}${payload?.digit}`,
-              overwrite: false,
-            };
+            ...state,
+            isOperationReady: Boolean(state.operation),
+            previousValue: `${state.previousValue}${payload?.digit}`,
+            overwrite: false,
+          };
       }
       if (state.overwrite || state.previousValue === "0") {
         return {

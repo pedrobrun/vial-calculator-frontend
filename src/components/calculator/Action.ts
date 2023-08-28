@@ -9,7 +9,7 @@ export type Action = {
   payload?: {
     digit?: string
     operation?: Operation
-    jwt: string | null
+    jwt?: string | null
   }
 }
 

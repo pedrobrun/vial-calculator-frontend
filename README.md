@@ -49,6 +49,8 @@ The folder structure is organized to isolate different aspects and responsibilit
 
 ## Getting Started
 
+1.  Rename your `.env.example` to `.env`
+2.  Install dependencies and run the project:
 ```bash
 $ npm install
 $ npm run dev
